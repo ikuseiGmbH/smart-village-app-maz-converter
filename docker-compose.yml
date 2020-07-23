@@ -2,7 +2,7 @@ version: '3.7'
 
 services:
   app:
-    image: registry.communicatio.com/ikusei/smart-village-app-maz-converter
+    image: registry.gitlab.tpwd.de/ikusei/smart-village-app-maz-converter
     depends_on: [db]
     environment:
       RAILS_ENV: production
