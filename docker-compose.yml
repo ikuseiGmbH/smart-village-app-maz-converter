@@ -8,10 +8,14 @@ services:
       RAILS_ENV: production
       RAILS_LOG_TO_STDOUT: 1
     configs:
-      - source: smart-village-app-maz-converter-database-yml
+      - source: sva-bad-belzig-maz-converter-database-yml
         target: /app/config/database.yml
-      - source: smart-village-app-maz-converter-unicorn-rb
+      - source: sva-bad-belzig-maz-converter-unicorn-rb
         target: /app/config/unicorn.rb
+      - source: sva-bad-belzig-maz-converter-master-key
+        target: /app/config/master.key
+      - source: sva-bad-belzig-maz-converter-production-key
+        target: /app/config/credentials/production.key
     volumes:
       - /etc/localtime:/etc/localtime:ro
       - unicorn:/unicorn
@@ -35,7 +39,7 @@ services:
         condition: on-failure
 
   db:
-    image: postgres
+    image: postgres:10.3-alpine
     environment:
       POSTGRES_USER: smart
       POSTGRES_PASSWORT: smart
@@ -53,11 +57,15 @@ volumes:
   assets:
 
 configs:
-  smart-village-app-maz-converter-nginx-conf:
+  sva-bad-belzig-maz-converter-nginx-conf:
     external: true
-  smart-village-app-maz-converter-database-yml:
+  sva-bad-belzig-maz-converter-database-yml:
     external: true
-  smart-village-app-maz-converter-unicorn-rb:
+  sva-bad-belzig-maz-converter-unicorn-rb:
+    external: true
+  sva-bad-belzig-maz-converter-master-key:
+    external: true
+  sva-bad-belzig-maz-converter-production-key:
     external: true
 
 networks:
