@@ -78,7 +78,7 @@ class ContentBlockParser
           width: image.dig("image", "value", "width"),
           height: image.dig("image", "value", "height")
         }.merge(parse_image_url(image, record))
-      end
+      end.delete_if(&:blank?).compact
     end
 
     def self.parse_image_url(image, record)
