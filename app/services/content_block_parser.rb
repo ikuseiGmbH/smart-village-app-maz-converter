@@ -21,7 +21,7 @@ class ContentBlockParser
       media = []
       media << article_image(data, record)
       media << related_objects_images(data, record)
-      media.compact.flatten
+      media.compact.flatten.delete_if(&:blank?)
     end
 
     #
